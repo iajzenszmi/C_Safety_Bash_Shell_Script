@@ -1,0 +1,50 @@
+Below is a complete test suite in C that will compile and invoke the `gcc_safe.sh` shell script with various sets of arguments. The program uses system calls to run the shell script and checks its outputs and exit codes to validate its behavior.
+
+This test suite assumes you have already created the `gcc_safe.sh` script.
+
+### Instructions for Running the Test Suite
+
+1. Save the C program into a file, for example, `test_gcc_safe.c`.
+2. Compile the test program:
+   ```bash
+   gcc -o test_gcc_safe test_gcc_safe.c
+   ```
+3. Ensure the `gcc_safe.sh` script is in the same directory and executable:
+   ```bash
+   chmod +x gcc_safe.sh
+   ```
+4. Run the test suite:
+   ```bash
+   ./test_gcc_safe
+   ```
+
+### What the Test Suite Does
+
+1. **Safe Compilation Test**:
+   - Ensures that a valid program compiles successfully using the wrapper.
+2. **Disallowed Flag Test**:
+   - Passes a disallowed flag (`-fno-stack-protector`) to the wrapper and checks if it blocks the compilation.
+3. **Missing Mandatory Flag Test**:
+   - Ensures that mandatory flags (like `-Wall`, `-Wextra`) are automatically added by the wrapper.
+4. **Invalid Input Test**:
+   - Provides a non-existent source file to the wrapper to confirm it handles errors correctly.
+
+### Expected Output
+If everything works as expected, the program will output:
+
+```
+Creating test source file...
+Starting test suite for gcc_safe.sh...
+Running test: Safe compilation
+Safe compilation passed.
+Running test: Disallowed flag
+Disallowed flag test passed.
+Running test: Missing mandatory flag
+Missing mandatory flag test passed.
+Running test: Invalid input
+Invalid input test passed.
+Cleaning up...
+All tests passed!
+``` 
+
+This ensures the wrapper behaves as intended under various conditions.
